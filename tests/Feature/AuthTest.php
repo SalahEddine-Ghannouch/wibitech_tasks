@@ -14,12 +14,12 @@ class AuthTest extends TestCase
     public function user_can_login_with_correct_credentials()
     {
         $user = User::factory()->create([
-            'email' => 'test@example.com',
+            'username' => 'testuser',
             'password' => bcrypt('password')
         ]);
 
         $response = $this->postJson('/api/login', [
-            'email' => 'test@example.com',
+            'username' => 'testuser',
             'password' => 'password'
         ]);
 
@@ -41,12 +41,12 @@ class AuthTest extends TestCase
     public function user_cannot_login_with_incorrect_credentials()
     {
         $user = User::factory()->create([
-            'email' => 'test@example.com',
+            'username' => 'testuser',
             'password' => bcrypt('password')
         ]);
 
         $response = $this->postJson('/api/login', [
-            'email' => 'test@example.com',
+            'username' => 'testuser',
             'password' => 'wrong_password'
         ]);
 
